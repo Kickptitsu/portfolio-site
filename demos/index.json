@@ -1,0 +1,6 @@
+{
+  "scenarios": [
+    { "id": "bakery", "tab": "🥐 Пекарня", "file": "bakery.json" },
+    { "id": "consultant", "tab": "🔧 Автосервис", "file": "consultant.json" }
+  ]
+}

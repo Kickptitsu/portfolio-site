@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kickptitsu — Telegram-боты, лендинги и автоматизация</title>
+  <meta name="description" content="Делаю Telegram-ботов, лендинги и скрипты для автоматизации: приём заказов, ответы клиентам, оплата, рутинные задачи. Посмотрите демо ботов прямо на странице.">
+  <meta name="theme-color" content="#F6F1E9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1916" media="(prefers-color-scheme: dark)">
+  <!-- Превью ссылки в Telegram и соцсетях. После покупки домена добавить og:url и og:image (картинка 1200×630, PNG или JPG) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Kickptitsu — Telegram-боты, лендинги и автоматизация">
+  <meta property="og:description" content="Боты для заказов и ответов клиентам, простые сайты, автоматизация. Демо ботов — прямо на странице.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/demo.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Шапка: имя, меню по разделам и кнопка связи -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top">Kickptitsu</a>
+      <nav class="nav" aria-label="Разделы сайта">
+        <a href="#services">Услуги</a>
+        <a href="#projects">Проекты</a>
+        <a href="#demo">Демо</a>
+        <a href="#process">Как я работаю</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <a class="btn btn-small" href="https://t.me/kckptts" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Первый экран: что делаю, для кого, кнопка «Написать в Telegram» -->
+    <section class="hero" id="top">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Telegram-боты · лендинги · автоматизация</p>
+          <h1>Боты и сайты для&nbsp;малого бизнеса</h1>
+          <p class="lead">
+            Бот принимает заказы и отвечает клиентам в Telegram, сайт объясняет,
+            что вы продаёте и как с вами связаться. Для пекарен, кафе, мастерских,
+            автосервисов — тех, кто сейчас разбирает заявки вручную.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="https://t.me/kckptts" target="_blank" rel="noopener">Написать в Telegram</a>
+            <a class="btn btn-ghost" href="#demo">Посмотреть демо</a>
+          </div>
+          <p class="hero-note">Сначала обсудим задачу, потом договоримся о плане, сроке и цене.</p>
+        </div>
+
+        <!-- Декоративный фрагмент чата: показывает, о чём речь. Настоящее демо — в блоке «Демо». -->
+        <div class="hero-chat" aria-hidden="true">
+          <div class="chat-head">
+            <span class="chat-avatar">🥐</span>
+            <span>
+              <span class="chat-name">Тёплый хлеб</span>
+              <span class="chat-status">бот</span>
+            </span>
+          </div>
+          <div class="chat-body">
+            <div class="msg msg-bot">Выберите категорию:</div>
+            <div class="kb">
+              <span>🥖 Хлеб</span><span>🥐 Выпечка</span>
+              <span>🍰 Десерты</span><span>☕ Напитки</span>
+            </div>
+            <div class="msg msg-user">🥐 Выпечка</div>
+            <div class="msg msg-bot">
+              <b>Круассан сливочный</b><br>
+              На французском масле 82%, 70 г<br>
+              <span class="price">120 ₽</span>
+            </div>
+            <div class="kb kb-row">
+              <span>➖</span><span>2 шт</span><span>➕</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Услуги -->
+    <section class="section" id="services">
+      <div class="container">
+        <h2>Услуги</h2>
+        <p class="section-lead">Точная цена и срок зависят от задачи — договоримся после обсуждения.</p>
+
+        <div class="services">
+          <article class="card service">
+            <h3>Telegram-бот</h3>
+            <p class="service-desc">Для заказов, записи и ответов на вопросы клиентов.</p>
+            <ul class="check-list">
+              <li>каталог, корзина и оформление заказа по шагам</li>
+              <li>оплата картой и по СБП через ЮKassa</li>
+              <li>ИИ-консультант, который отвечает по вашим ценам и правилам</li>
+              <li>передача сложного вопроса живому сотруднику</li>
+              <li>уведомления менеджеру и панель со статистикой</li>
+              <li>согласие на обработку данных и их удаление по 152-ФЗ</li>
+            </ul>
+          </article>
+
+          <article class="card service">
+            <h3>Лендинг</h3>
+            <p class="service-desc">Одна страница о вашем деле: что продаёте, сколько стоит, как связаться.</p>
+            <ul class="check-list">
+              <li>понятная структура под вашу услугу</li>
+              <li>удобно смотреть с телефона, быстро открывается</li>
+              <li>кнопки связи в Telegram, WhatsApp или по телефону</li>
+              <li>по желанию — размещение на сервере и подключение домена</li>
+              <li>без лишних форм и счётчиков, если они не нужны</li>
+            </ul>
+          </article>
+
+          <article class="card service">
+            <h3>Автоматизация и доработка</h3>
+            <p class="service-desc">Скрипты и программы, которые забирают рутину, и доработка того, что уже работает.</p>
+            <ul class="check-list">
+              <li>скрипты для таблиц, файлов и отчётов</li>
+              <li>сбор данных с сайтов, связка сервисов через API</li>
+              <li>задачи по расписанию на сервере</li>
+              <li>доработка существующих ботов и программ</li>
+              <li>поиск и исправление ошибок в готовом коде</li>
+              <li>нет вашей задачи в списке — напишите, обсудим</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Проекты: тексты из README ботов -->
+    <section class="section" id="projects">
+      <div class="container">
+        <h2>Проекты</h2>
+        <p class="section-lead">
+          Учебные проекты с выдуманными бизнесами. Код открыт на GitHub,
+          работу ботов можно посмотреть на видео или в демо на этой странице.
+        </p>
+
+        <div class="projects">
+          <article class="card project">
+            <div class="project-head">
+              <span class="project-icon" aria-hidden="true">🥐</span>
+              <div>
+                <h3>Бот пекарни «Тёплый хлеб»</h3>
+                <p class="project-code">bakery-bot</p>
+              </div>
+            </div>
+
+            <p class="project-label">Задача</p>
+            <p>
+              Принимать заказы в Telegram без звонков и переписки вручную: клиент сам
+              собирает корзину, выбирает доставку или самовывоз и оплачивает,
+              а менеджер получает готовый заказ.
+            </p>
+
+            <p class="project-label">Что умеет</p>
+            <ul class="check-list">
+              <li>каталог по категориям, корзина с кнопками ➖ / ➕</li>
+              <li>оформление по шагам: имя, телефон, доставка, адрес, комментарий</li>
+              <li>оплата картой в Telegram, по СБП или при получении</li>
+              <li>уведомления менеджеру с кнопками статусов, клиенту — о смене статуса</li>
+              <li>панель /admin: активные заказы, наличие товаров, выручка и топ товаров</li>
+              <li>согласие на обработку данных, /privacy и обезличивание по запросу</li>
+            </ul>
+
+            <p class="project-label">Технологии</p>
+            <ul class="tags">
+              <li>Python</li><li>aiogram 3</li><li>SQLite</li><li>ЮKassa</li><li>pytest · 67 тестов</li>
+            </ul>
+
+            <!-- Ссылку на бота в Telegram добавить, когда бот будет работать на сервере -->
+            <div class="project-links">
+              <a class="btn btn-small" href="#demo" data-demo="bakery">Попробовать демо</a>
+              <a class="btn btn-small btn-ghost" href="https://github.com/Kickptitsu/bakery-bot#демонстрация" target="_blank" rel="noopener">Видео</a>
+              <a class="btn btn-small btn-ghost" href="https://github.com/Kickptitsu/bakery-bot" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div class="project-head">
+              <span class="project-icon" aria-hidden="true">🔧</span>
+              <div>
+                <h3>ИИ-консультант автосервиса «Гараж 18»</h3>
+                <p class="project-code">consultant-bot</p>
+              </div>
+            </div>
+
+            <p class="project-label">Задача</p>
+            <p>
+              Отвечать клиентам строго по базе знаний автосервиса: услуги и цены,
+              график, адрес, гарантия. Не знает ответа — честно говорит об этом,
+              не выдумывает цены и передаёт вопрос живому администратору.
+            </p>
+
+            <p class="project-label">Что умеет</p>
+            <ul class="check-list">
+              <li>ответы по базе знаний с ценами и сроками ровно как в справочнике</li>
+              <li>понимает уточнения вроде «А для пенсионеров?»</li>
+              <li>передача диалога оператору в группу Telegram, ответ приходит в тот же чат</li>
+              <li>проверка ответа: цену, которой нет в базе, клиент не увидит</li>
+              <li>база знаний обновляется файлом прямо из Telegram</li>
+              <li>/admin: статистика, расход токенов, вопросы без ответа</li>
+            </ul>
+
+            <p class="project-label">Технологии</p>
+            <ul class="tags">
+              <li>Python</li><li>aiogram 3</li><li>YandexGPT</li><li>GigaChat</li><li>SQLite</li><li>pytest · 102 теста</li>
+            </ul>
+
+            <!-- Ссылку на бота в Telegram добавить, когда бот будет работать на сервере -->
+            <div class="project-links">
+              <a class="btn btn-small" href="#demo" data-demo="consultant">Попробовать демо</a>
+              <a class="btn btn-small btn-ghost" href="https://github.com/Kickptitsu/consultant-bot#демонстрация" target="_blank" rel="noopener">Видео</a>
+              <a class="btn btn-small btn-ghost" href="https://github.com/Kickptitsu/consultant-bot" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Интерактивное демо: сценарии лежат в demos/*.json, движок — js/demo.js -->
+    <section class="section" id="demo">
+      <div class="container">
+        <h2>Демо</h2>
+        <p class="section-lead">
+          Окно ниже — имитация Telegram по заранее записанному сценарию. Настоящие боты
+          и ИИ к странице не подключены. Нажимайте кнопки, как в обычном чате.
+        </p>
+
+        <div class="demo" id="demo-app">
+          <div class="demo-side">
+            <div class="demo-tabs" role="tablist" aria-label="Выбор демо"></div>
+            <div class="demo-info"></div>
+          </div>
+
+          <div class="tg">
+            <div class="tg-head">
+              <span class="tg-avatar" aria-hidden="true"></span>
+              <span class="tg-title">
+                <span class="tg-name">Демо</span>
+                <span class="tg-status">загрузка…</span>
+              </span>
+              <button class="tg-restart" type="button">↻ Сначала</button>
+            </div>
+            <div class="tg-toast" role="status" hidden></div>
+            <div class="tg-log" aria-live="polite" aria-label="Переписка с ботом"></div>
+            <div class="tg-suggest" hidden>
+              <p class="tg-suggest-label">Нажмите, чтобы отправить:</p>
+              <div class="tg-chips"></div>
+            </div>
+            <div class="tg-input" aria-hidden="true">
+              <span class="tg-placeholder">Сообщение</span>
+              <span class="tg-send">➤</span>
+            </div>
+            <div class="tg-keyboard" hidden></div>
+          </div>
+        </div>
+        <noscript><p class="stub">Чтобы посмотреть демо, включите JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <!-- 5. Как я работаю: этапы от заявки до запуска -->
+    <section class="section" id="process">
+      <div class="container">
+        <h2>Как я работаю</h2>
+
+        <ol class="steps">
+          <li class="step">
+            <h3>Заявка</h3>
+            <p>Пишете в Telegram, что нужно. Есть техническое задание — присылайте. Нет — опишите задачу своими словами, этого достаточно для начала.</p>
+          </li>
+          <li class="step">
+            <h3>Обсуждение</h3>
+            <p>Уточняю, кто будет пользоваться ботом или сайтом, что он должен делать и какие данные в нём будут.</p>
+          </li>
+          <li class="step">
+            <h3>Договорённость</h3>
+            <p>Обсуждаем бюджет и срок. Если бюджет уже есть, скажу, что в него поместится; если нет — предложу свою оценку. Код начинаю писать, когда договорились о плане.</p>
+          </li>
+          <li class="step">
+            <h3>Разработка</h3>
+            <p>Показываю, как идёт работа: присылаю видео с результатом. Код проверяю автотестами.</p>
+          </li>
+          <li class="step">
+            <h3>Запуск</h3>
+            <p>Могу разместить проект на сервере и настроить автозапуск. Хотите сделать это сами — передам всё с пошаговой инструкцией.</p>
+          </li>
+          <li class="step">
+            <h3>После запуска</h3>
+            <p>На выбор: передаю код и инструкцию — дальше проект может вести любой разработчик. Или остаюсь на поддержке за ежемесячную плату: исправляю ошибки и вношу правки.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6. Контакты: только Telegram, без форм -->
+    <section class="section" id="contacts">
+      <div class="container">
+        <div class="contact card">
+          <div>
+            <h2>Обсудим вашу задачу</h2>
+            <p>
+              Напишите в Telegram пару предложений: чем занимается ваш бизнес
+              и что должен делать бот или сайт.
+            </p>
+          </div>
+          <a class="btn contact-btn" href="https://t.me/kckptts" target="_blank" rel="noopener">
+            Написать <span class="contact-handle">@kckptts</span>
+          </a>
+        </div>
+        <p class="privacy-note">На сайте нет форм и счётчиков посещений: я не собираю данные посетителей.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Kickptitsu · Telegram-боты, лендинги, автоматизация</p>
+      <p>
+        <a href="https://t.me/kckptts" target="_blank" rel="noopener">Telegram</a>
+        · <a href="https://github.com/Kickptitsu" target="_blank" rel="noopener">GitHub</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,806 @@
+/* ============================================================
+   Цвета и размеры — в одном месте. Поменяли здесь — поменялось везде.
+   ============================================================ */
+:root {
+  --bg: #F6F1E9;          /* фон страницы — кремовый */
+  --surface: #FFFFFF;     /* карточки, окно чата */
+  --surface-2: #EFE7DC;   /* сообщения бота, подложки */
+  --text: #2A2521;        /* основной текст */
+  --muted: #6B6159;       /* второстепенный текст */
+  --line: #E2D8CB;        /* тонкие рамки */
+  --accent: #A84B28;      /* терракота: кнопки и акценты (контраст с фоном ≥ 4.5) */
+  --accent-hover: #8F3F20;
+  --on-accent: #FFFFFF;   /* текст на кнопке */
+  --user-msg: #F3DCCB;    /* сообщения клиента в чате */
+  --chat-bg: #E9DFD2;     /* фон переписки в демо */
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: Georgia, "Noto Serif", "Times New Roman", serif;
+
+  --radius: 10px;
+  --radius-lg: 18px;
+  --container: 1120px;
+
+  color-scheme: light dark;
+}
+
+/* Тёмная тема включается сама, если она включена на телефоне или компьютере */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1C1916;
+    --surface: #26221E;
+    --surface-2: #332D27;
+    --text: #EDE6DC;
+    --muted: #B3A89C;
+    --line: #3D362F;
+    --accent: #E08A5F;
+    --accent-hover: #EBA07A;
+    --on-accent: #1C1916;
+    --user-msg: #4A3427;
+    --chat-bg: #161310;
+  }
+}
+
+/* ============================================================
+   Основа
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Атрибут hidden прячет элемент, даже если в стилях у него указан display */
+[hidden] { display: none !important; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+h2 { font-size: clamp(28px, 4vw, 40px); }
+
+p { margin: 0 0 1em; }
+
+a { color: var(--accent); }
+a:hover { color: var(--accent-hover); }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Ссылка «Перейти к содержанию» видна только при навигации с клавиатуры */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  background: var(--surface);
+  padding: 8px 12px;
+  z-index: 100;
+}
+.skip-link:focus { left: 8px; }
+
+/* ============================================================
+   Кнопки
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;               /* удобно нажимать пальцем */
+  padding: 12px 22px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--on-accent);
+  font: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s;
+}
+.btn:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--on-accent);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line);
+}
+.btn-ghost:hover {
+  background: var(--surface);
+  border-color: var(--muted);
+  color: var(--text);
+}
+.btn-small {
+  min-height: 40px;
+  padding: 8px 16px;
+  font-size: 15px;
+}
+
+/* ============================================================
+   Шапка
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 64px;
+}
+.logo {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--text);
+  text-decoration: none;
+}
+.nav {
+  display: flex;
+  gap: 22px;
+  margin-left: auto;
+}
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 15px;
+}
+.nav a:hover { color: var(--text); }
+
+/* На телефоне меню прячем: страница короткая, её удобно листать */
+@media (max-width: 760px) {
+  .nav { display: none; }
+  .header-inner { justify-content: space-between; }
+}
+
+/* ============================================================
+   Первый экран
+   ============================================================ */
+.hero { padding: 72px 0 88px; }
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 6vw, 64px);
+  margin-bottom: 20px;
+}
+
+.lead {
+  font-size: 19px;
+  color: var(--muted);
+  max-width: 34em;
+  margin-bottom: 28px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.hero-note {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Фрагмент чата справа */
+.hero-chat {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 380px;
+  justify-self: end;
+  width: 100%;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.chat-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.chat-avatar {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  font-size: 18px;
+}
+.chat-name { display: block; font-weight: 500; }
+.chat-status { display: block; font-size: 13px; color: var(--muted); }
+
+.chat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+.msg {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 14px;
+}
+.msg-bot {
+  align-self: flex-start;
+  background: var(--surface-2);
+  border-bottom-left-radius: 4px;
+}
+.msg-user {
+  align-self: flex-end;
+  background: var(--user-msg);
+  border-bottom-right-radius: 4px;
+}
+.price { color: var(--accent); font-weight: 500; }
+
+/* Inline-кнопки под сообщением, как в Telegram */
+.kb {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  max-width: 85%;
+}
+.kb-row { grid-template-columns: 1fr 1.4fr 1fr; }
+.kb span {
+  padding: 6px 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* На узком экране — всё в одну колонку, чат под текстом */
+@media (max-width: 860px) {
+  .hero { padding: 40px 0 56px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-chat { justify-self: start; }
+  .lead { font-size: 17px; }
+}
+@media (max-width: 420px) {
+  .hero-actions .btn { width: 100%; }
+}
+
+/* ============================================================
+   Общее для разделов
+   ============================================================ */
+.section {
+  padding: 80px 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 64px;   /* чтобы заголовок не прятался под шапкой */
+}
+.section-lead {
+  color: var(--muted);
+  max-width: 40em;
+  margin-bottom: 36px;
+}
+.stub {
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.card h3 { font-size: 26px; }
+
+/* Список с галочками */
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.check-list li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 8px;
+}
+.check-list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: .5em;
+  width: 9px;
+  height: 5px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+/* ============================================================
+   Услуги
+   ============================================================ */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.service {
+  display: flex;
+  flex-direction: column;
+}
+.service-desc { color: var(--muted); }
+.service .check-list { margin-bottom: 0; }
+
+/* ============================================================
+   Проекты
+   ============================================================ */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.project {
+  display: flex;
+  flex-direction: column;
+}
+.project-head {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.project-head h3 { margin-bottom: 4px; }
+.project-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  font-size: 24px;
+}
+.project-code {
+  margin: 0;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 14px;
+  color: var(--muted);
+}
+.project-label {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.tags {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tags li {
+  background: var(--surface-2);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 14px;
+}
+.project-links {
+  margin-top: auto;            /* кнопки всегда внизу карточки */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ============================================================
+   Демо: слева выбор сценария и подсказки, справа окно Telegram
+   ============================================================ */
+.demo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  gap: 48px;
+  align-items: start;
+}
+.demo-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.demo-tab {
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+.demo-tab:hover { border-color: var(--muted); }
+.demo-tab[aria-selected="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+.demo-info h3 { font-size: 26px; }
+.demo-info p { color: var(--muted); }
+.demo-try-label {
+  margin: 20px 0 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--accent) !important;
+}
+
+/* Окно чата */
+.tg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 640px;
+  max-height: 85vh;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.tg-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px 10px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.tg-avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  font-size: 20px;
+}
+.tg-title { flex: 1; min-width: 0; }
+.tg-name {
+  display: block;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;   /* длинное имя бота — с многоточием в одну строку */
+}
+.tg-status { display: block; font-size: 13px; color: var(--muted); }
+.tg-status.is-typing { color: var(--accent); }
+.tg-restart {
+  flex: none;
+  min-height: 40px;
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.tg-restart:hover { color: var(--text); border-color: var(--muted); }
+
+/* Всплывающая подсказка — как ответ бота на нажатие кнопки */
+.tg-toast {
+  position: absolute;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: rgba(30, 26, 22, .88);
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  animation: tg-fade .2s ease-out;
+}
+
+/* Переписка */
+.tg-log {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;   /* прокрутка чата не уводит страницу */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 12px;
+  background: var(--chat-bg);
+}
+.tg-msg {
+  max-width: 88%;
+  animation: tg-fade .2s ease-out;
+}
+.tg-bubble {
+  padding: 7px 11px;
+  border-radius: 14px;
+  overflow-wrap: anywhere;
+}
+.tg-bubble code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: .92em;
+}
+.tg-from-bot { align-self: flex-start; }
+.tg-from-bot .tg-bubble {
+  background: var(--surface);
+  border-bottom-left-radius: 4px;
+}
+.tg-from-user { align-self: flex-end; }
+.tg-from-user .tg-bubble {
+  background: var(--user-msg);
+  border-bottom-right-radius: 4px;
+}
+/* Служебная плашка посередине: пояснения демо */
+.tg-from-service {
+  align-self: center;
+  max-width: 92%;
+  text-align: center;
+}
+.tg-from-service .tg-bubble {
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, .6);
+  color: var(--muted);
+  font-size: 13px;
+}
+/* Сообщение, которое бот только что отредактировал */
+.tg-msg.is-edited .tg-bubble { animation: tg-edited .9s ease-out; }
+
+/* Inline-кнопки под сообщением */
+.tg-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+.tg-row {
+  display: flex;
+  gap: 4px;
+}
+.tg-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 40px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(60, 50, 40, .16);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.tg-btn:hover { background: rgba(60, 50, 40, .26); }
+.tg-inline.is-stale .tg-btn {
+  opacity: .45;
+  cursor: default;
+}
+
+/* Подсказки: что «напечатать» в демо */
+.tg-suggest {
+  padding: 8px 12px 4px;
+  border-top: 1px solid var(--line);
+}
+.tg-suggest-label {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.tg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 84px;          /* не больше двух рядов, остальное — прокруткой, */
+  overflow-y: auto;          /* чтобы подсказки не закрывали переписку */
+  padding-bottom: 4px;
+}
+.tg-chip {
+  min-height: 34px;
+  padding: 5px 12px;
+  border: 1px dashed var(--accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.tg-chip:hover { background: var(--surface-2); }
+
+/* Поле ввода — только для вида */
+.tg-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+.tg-placeholder { flex: 1; min-width: 0; }
+.tg-send { color: var(--line); }
+
+/* Кнопки внизу экрана (reply-клавиатура) */
+.tg-keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  background: var(--surface-2);
+}
+.tg-keyboard .tg-btn {
+  background: var(--surface);
+  min-height: 42px;
+}
+.tg-keyboard .tg-btn:hover { background: var(--bg); }
+
+.is-busy .tg-btn, .is-busy .tg-chip { cursor: progress; }
+
+@media (prefers-color-scheme: dark) {
+  .tg-btn { background: rgba(255, 240, 225, .1); }
+  .tg-btn:hover { background: rgba(255, 240, 225, .18); }
+  .tg-from-service .tg-bubble { background: rgba(255, 240, 225, .08); }
+}
+
+@keyframes tg-fade {
+  from { opacity: 0; transform: translateY(4px); }
+}
+@keyframes tg-edited {
+  from { box-shadow: 0 0 0 3px var(--accent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tg-msg, .tg-toast, .tg-msg.is-edited .tg-bubble { animation: none; }
+}
+
+/* ============================================================
+   Как я работаю
+   ============================================================ */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px 32px;
+  counter-reset: step;
+}
+.step {
+  counter-increment: step;
+  border-top: 2px solid var(--accent);
+  padding-top: 16px;
+}
+.step::before {
+  content: counter(step, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.step h3 { font-size: 22px; }
+.step p { color: var(--muted); margin: 0; }
+
+/* ============================================================
+   Контакты
+   ============================================================ */
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 40px;
+  padding: 40px;
+}
+.contact h2 { margin-bottom: 12px; }
+.contact p { color: var(--muted); max-width: 32em; margin: 0; }
+.contact-btn {
+  flex: none;
+  min-height: 56px;
+  padding: 14px 28px;
+  font-size: 18px;
+}
+.contact-handle { opacity: .85; font-weight: 400; }
+.privacy-note {
+  margin: 16px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ============================================================
+   Подвал
+   ============================================================ */
+.site-footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 15px;
+}
+.site-footer p { margin: 0; }
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+}
+
+/* ============================================================
+   Планшет и телефон
+   ============================================================ */
+@media (max-width: 860px) {
+  .section { padding: 56px 0; }
+  .services, .projects { grid-template-columns: 1fr; }
+  /* На телефоне сначала вкладки и чат, описание — под чатом */
+  .demo { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .demo-side { display: contents; }
+  .demo-tabs { order: 1; margin-bottom: 0; }
+  .tg { order: 2; }
+  .demo-info { order: 3; }
+  .demo-info .check-list { margin-bottom: 0; }
+  .tg { height: 600px; max-height: 80vh; max-height: 80svh; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact { flex-direction: column; align-items: stretch; padding: 28px; }
+}
+@media (max-width: 520px) {
+  .card { padding: 22px 20px; }
+  .card h3 { font-size: 23px; }
+  .steps { grid-template-columns: 1fr; gap: 28px; }
+  .contact-btn { width: 100%; }
+}
